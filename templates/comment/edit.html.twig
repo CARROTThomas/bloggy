@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommentController!{% endblock %}
+
+{% block body %}
+
+    <div class="pt-5">
+        <div class="container">
+            <h1>Creer un post</h1>
+            <div>
+                {{ form_start(commentForm) }}
+
+                {{ form_row(commentForm.content) }}
+
+                <button class="btn btn-secondary" type="submit">Edit</button>
+                {{ form_end(commentForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

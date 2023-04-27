@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+
+    <div class="pt-5">
+        <div class="container">
+            <h1>Creer un post</h1>
+            <div>
+                {{ form_start(formulaire_post) }}
+
+                {{ form_row(formulaire_post.title) }}
+                {{ form_row(formulaire_post.content) }}
+
+                <button class="btn btn-secondary" type="submit">Send</button>
+                {{ form_end(formulaire_post) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
