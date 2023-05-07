@@ -17,7 +17,7 @@
     </head>
     <body>
         <header>
-        <nav class="navbar navbar-expand-lg bg-secondary">
+        <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-lg d-flex align-items-center justify-content-between">
                 <a id="logoNavBarre" href="{{ path('app_post') }}">LOGO</a>
                 <!--<a id="logoNavBarre" class="navbar-brand text-light imgBase" href="#">LOGO</a>-->
@@ -26,21 +26,24 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end text-light" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li>
-                            <a class="nav-link" href="{{ path('create_post') }}">create</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#">lien</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#">lien</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#">lien</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="#">lien</a>
-                        </li>
+                        {% if app.user %}
+                            <li>
+                                <a class="nav-link" href="{{ path('app_post') }}">voir les posts</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ path('create_post') }}">create</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ path('app_logout') }}">logout</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a class="nav-link" href="{{ path('app_login') }}">login</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{ path('app_register') }}">register</a>
+                            </li>
+                        {%  endif %}
                     </ul>
                 </div>
             </div>

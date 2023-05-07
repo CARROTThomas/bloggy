@@ -34,6 +34,7 @@ class CommentController extends AbstractController
         $commentForm->handleRequest($request);
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            $comment->setAuthor($this->getUser());
             $comment->setPost($post);
             $comment->setCreatedAt(new \DateTime());
 

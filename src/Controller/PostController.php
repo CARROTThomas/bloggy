@@ -42,6 +42,9 @@ class PostController extends AbstractController
         $edit = false;
         if ($post) {
             $edit = true;
+            if ($post->getAuthor() !== $this->getUser()) {
+                return $this->redirectToRoute('app_post');
+            }
         }
 
         if (!$edit) {
@@ -53,6 +56,7 @@ class PostController extends AbstractController
         $formPost->handleRequest($request);
 
         if ($formPost->isSubmitted() && $formPost->isValid()) {
+            $post->setAuthor($this->getUser());
             $post->setCreatedAt(new \DateTime());
             $manager->persist($post);
             $manager->flush();

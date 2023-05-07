@@ -17,7 +17,7 @@ class Comment
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\Length(
-        min: 10,
+        min: 1,
         max: 150,
         minMessage: 'trop court'
     )]
@@ -29,6 +29,10 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Post $post = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
 
     public function getId(): ?int
     {
@@ -67,6 +71,18 @@ class Comment
     public function setPost(?Post $post): self
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

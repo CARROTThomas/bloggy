@@ -12,12 +12,17 @@
                 <div class="ms-4 p-3">
                     <h3>{{ post.title }}</h3>
                     <p>{{ post.content }}</p>
+                    <p>De : {{ post.author.username }}</p>
                     <p><strong>{{ post.createdAt | date("d/m/Y - H/s") }}</strong></p>
                 </div>
                 <div class="d-flex flex-column p-3">
-                    <a href="{{ path('delete_post', {id:post.id}) }}" class="btn btn-danger m-1">delete</a>
                     <a href="{{ path('show_post',{id:post.id}) }}" class="btn btn-primary m-1">show</a>
-                    <a href="{{ path('edit_post', {id:post.id}) }}" class="btn btn-warning m-1">update</a>
+
+
+                    {% if app.user == post.author %}
+                        <a href="{{ path('delete_post', {id:post.id}) }}" class="btn btn-danger m-1">delete</a>
+                        <a href="{{ path('edit_post', {id:post.id}) }}" class="btn btn-warning m-1">update</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
